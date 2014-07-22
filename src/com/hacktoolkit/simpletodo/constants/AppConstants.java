@@ -1,4 +1,4 @@
-package com.hacktoolkit.android.constants;
+package com.hacktoolkit.simpletodo.constants;
 
 public class AppConstants {
 	

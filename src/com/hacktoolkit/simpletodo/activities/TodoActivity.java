@@ -1,4 +1,4 @@
-package com.hacktoolkit.android.simpletodo;
+package com.hacktoolkit.simpletodo.activities;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,13 +17,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.hacktoolkit.android.constants.AppConstants;
 import com.hacktoolkit.android.utils.FileUtils;
+import com.hacktoolkit.android.utils.HTKUtils;
+import com.hacktoolkit.simpletodo.R;
+import com.hacktoolkit.simpletodo.constants.AppConstants;
 
 public class TodoActivity extends Activity {
 	ArrayList<String> items;
 	ArrayAdapter<String> itemsAdapter;
 	ListView lvItems;
+	EditText etNewItem;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class TodoActivity extends Activity {
 		lvItems.setAdapter(itemsAdapter);
 		
 		// enter key submits item
-		EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
+		etNewItem = (EditText) findViewById(R.id.etNewItem);
 		etNewItem.setOnEditorActionListener(new OnEditorActionListener() {
 			public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
 				if (actionId == EditorInfo.IME_NULL) {
@@ -59,7 +62,7 @@ public class TodoActivity extends Activity {
 	}
 
 	public void addTodoItem(View view) {
-		EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
+		etNewItem = (EditText) findViewById(R.id.etNewItem);
 		String value = etNewItem.getText().toString();
 		if (!value.equals(AppConstants.EMPTY_STRING)) {
 			itemsAdapter.add(value);
@@ -67,6 +70,7 @@ public class TodoActivity extends Activity {
 			etNewItem.setText(AppConstants.EMPTY_STRING);
 			lvItems.setSelection(itemsAdapter.getCount() - 1);
 			storeItemsToFile();
+			HTKUtils.hideSoftKeyboard(this, view);
 		}
 	}
 	
