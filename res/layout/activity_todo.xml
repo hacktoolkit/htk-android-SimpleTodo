@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="top"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,17 +12,18 @@
     <ListView
         android:id="@+id/lvItems"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp" >
+
     </ListView>
 
     <EditText
         android:id="@+id/etNewItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnAddItem"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/btnAddItem"
         android:ems="10"
         android:hint="@string/et_new_item_hint"
         android:imeOptions="actionDone" >
@@ -33,8 +35,8 @@
         android:id="@+id/btnAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewItem"
         android:layout_alignRight="@+id/lvItems"
-        android:layout_below="@+id/lvItems"
         android:onClick="addTodoItem"
         android:text="@string/add_button_label" />
 

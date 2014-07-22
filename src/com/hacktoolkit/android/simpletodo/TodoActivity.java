@@ -65,6 +65,7 @@ public class TodoActivity extends Activity {
 			itemsAdapter.add(value);
 			itemsAdapter.notifyDataSetChanged();
 			etNewItem.setText(AppConstants.EMPTY_STRING);
+			lvItems.setSelection(itemsAdapter.getCount() - 1);
 			storeItemsToFile();
 		}
 	}
