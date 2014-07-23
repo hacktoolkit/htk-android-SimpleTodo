@@ -1,5 +1,5 @@
-android_simple_todo
-===================
+htk-android-SimpleTodo
+======================
 
 A simple todo-list app, hence the name.
 
