@@ -10,12 +10,14 @@ import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.hacktoolkit.android.utils.FileUtils;
 import com.hacktoolkit.android.utils.HTKUtils;
@@ -51,7 +53,7 @@ public class TodoActivity extends Activity {
 
 		});
 
-		setupListViewListener();
+		setupListViewListeners();
 	}
 
 	@Override
@@ -71,10 +73,12 @@ public class TodoActivity extends Activity {
 			lvItems.setSelection(itemsAdapter.getCount() - 1);
 			storeItemsToFile();
 			HTKUtils.hideSoftKeyboard(this, view);
+			Toast.makeText(getBaseContext(), "Task Added!",
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 	
-	private void setupListViewListener() {
+	private void setupListViewListeners() {
 		lvItems.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> aView,
@@ -84,6 +88,19 @@ public class TodoActivity extends Activity {
 				storeItemsToFile();
 				return true;
 			}
+		});
+
+		lvItems.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(	AdapterView<?> aView,
+					View view, int position, long rowId) {
+				String clickedItem = items.get(position);
+				Toast.makeText(
+						getApplicationContext(),
+						"Clicked ListItem Number " + position + ", " + clickedItem,
+						Toast.LENGTH_LONG
+						).show();
+				}
 		});
 	}
 	
